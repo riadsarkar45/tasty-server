@@ -54,6 +54,7 @@ model poll {
   video     videos?      @relation(fields: [videoId], references: [videoId])
 }
 
+
 model questions {
   id        Int      @id @default(autoincrement())
   createdBy String
