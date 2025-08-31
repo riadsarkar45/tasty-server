@@ -164,6 +164,14 @@ exports.Prisma.PollOptionScalarFieldEnum = {
   pollId: 'pollId'
 };
 
+exports.Prisma.PollResponsesScalarFieldEnum = {
+  id: 'id',
+  submittedAt: 'submittedAt',
+  submittedBy: 'submittedBy',
+  selectedOption: 'selectedOption',
+  pollOptionId: 'pollOptionId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -185,7 +193,8 @@ exports.Prisma.ModelName = {
   videos: 'videos',
   poll: 'poll',
   questions: 'questions',
-  pollOption: 'pollOption'
+  pollOption: 'pollOption',
+  pollResponses: 'pollResponses'
 };
 
 /**

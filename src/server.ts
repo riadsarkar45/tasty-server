@@ -20,7 +20,7 @@ const app = fastify({
   },
 });
 
-// ✅ CORS
+//  CORS
 app.register(cors, {
   origin: process.env.NODE_ENV === "production"
     ? "*" // In production, restrict to your domain
@@ -28,22 +28,22 @@ app.register(cors, {
   credentials: true,
 });
 
-// ✅ Plugins
+// Plugins
 app.register(multipart);
 app.register(polls);
 app.register(uploadNewImage);
 app.register(getVideosForPublic, { prefix: "/api/v1/public" });
 
-// ✅ Database connection
+// Database connection
 databaseCon(app);
 
-// ✅ Root route
+//  Root route
 app.get("/", async () => {
   app.log.info("Handled / request");
   return { message: "Hello! Fastify server is running 🚀" };
 });
 
-// ✅ Start server (Render uses this)
+// Start server (Render uses this)
 const start = async () => {
   try {
     const port = parseInt(process.env.PORT || "10000", 10);
@@ -60,5 +60,5 @@ if (require.main === module) {
   start();
 }
 
-// ✅ Export app for testing or serverless reuse
+//Export app for testing or serverless reuse
 export default app;

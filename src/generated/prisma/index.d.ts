@@ -38,6 +38,11 @@ export type questions = $Result.DefaultSelection<Prisma.$questionsPayload>
  * 
  */
 export type pollOption = $Result.DefaultSelection<Prisma.$pollOptionPayload>
+/**
+ * Model pollResponses
+ * 
+ */
+export type pollResponses = $Result.DefaultSelection<Prisma.$pollResponsesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get pollOption(): Prisma.pollOptionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pollResponses`: Exposes CRUD operations for the **pollResponses** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PollResponses
+    * const pollResponses = await prisma.pollResponses.findMany()
+    * ```
+    */
+  get pollResponses(): Prisma.pollResponsesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     videos: 'videos',
     poll: 'poll',
     questions: 'questions',
-    pollOption: 'pollOption'
+    pollOption: 'pollOption',
+    pollResponses: 'pollResponses'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "categories" | "videos" | "poll" | "questions" | "pollOption"
+      modelProps: "categories" | "videos" | "poll" | "questions" | "pollOption" | "pollResponses"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1066,80 @@ export namespace Prisma {
           }
         }
       }
+      pollResponses: {
+        payload: Prisma.$pollResponsesPayload<ExtArgs>
+        fields: Prisma.pollResponsesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.pollResponsesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.pollResponsesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>
+          }
+          findFirst: {
+            args: Prisma.pollResponsesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.pollResponsesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>
+          }
+          findMany: {
+            args: Prisma.pollResponsesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>[]
+          }
+          create: {
+            args: Prisma.pollResponsesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>
+          }
+          createMany: {
+            args: Prisma.pollResponsesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.pollResponsesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>[]
+          }
+          delete: {
+            args: Prisma.pollResponsesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>
+          }
+          update: {
+            args: Prisma.pollResponsesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>
+          }
+          deleteMany: {
+            args: Prisma.pollResponsesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.pollResponsesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.pollResponsesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>[]
+          }
+          upsert: {
+            args: Prisma.pollResponsesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pollResponsesPayload>
+          }
+          aggregate: {
+            args: Prisma.PollResponsesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePollResponses>
+          }
+          groupBy: {
+            args: Prisma.pollResponsesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PollResponsesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.pollResponsesCountArgs<ExtArgs>
+            result: $Utils.Optional<PollResponsesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1147,6 +1237,7 @@ export namespace Prisma {
     poll?: pollOmit
     questions?: questionsOmit
     pollOption?: pollOptionOmit
+    pollResponses?: pollResponsesOmit
   }
 
   /* Types for Logging */
@@ -1340,6 +1431,37 @@ export namespace Prisma {
    */
   export type PollCountOutputTypeCountOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: pollOptionWhereInput
+  }
+
+
+  /**
+   * Count Type PollOptionCountOutputType
+   */
+
+  export type PollOptionCountOutputType = {
+    responses: number
+  }
+
+  export type PollOptionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    responses?: boolean | PollOptionCountOutputTypeCountResponsesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PollOptionCountOutputType without action
+   */
+  export type PollOptionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PollOptionCountOutputType
+     */
+    select?: PollOptionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PollOptionCountOutputType without action
+   */
+  export type PollOptionCountOutputTypeCountResponsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pollResponsesWhereInput
   }
 
 
@@ -6132,6 +6254,8 @@ export namespace Prisma {
     options?: boolean
     pollId?: boolean
     poll?: boolean | pollOption$pollArgs<ExtArgs>
+    responses?: boolean | pollOption$responsesArgs<ExtArgs>
+    _count?: boolean | PollOptionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pollOption"]>
 
   export type pollOptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6160,6 +6284,8 @@ export namespace Prisma {
   export type pollOptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "options" | "pollId", ExtArgs["result"]["pollOption"]>
   export type pollOptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     poll?: boolean | pollOption$pollArgs<ExtArgs>
+    responses?: boolean | pollOption$responsesArgs<ExtArgs>
+    _count?: boolean | PollOptionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type pollOptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     poll?: boolean | pollOption$pollArgs<ExtArgs>
@@ -6172,6 +6298,7 @@ export namespace Prisma {
     name: "pollOption"
     objects: {
       poll: Prisma.$pollPayload<ExtArgs> | null
+      responses: Prisma.$pollResponsesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6573,6 +6700,7 @@ export namespace Prisma {
   export interface Prisma__pollOptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     poll<T extends pollOption$pollArgs<ExtArgs> = {}>(args?: Subset<T, pollOption$pollArgs<ExtArgs>>): Prisma__pollClient<$Result.GetResult<Prisma.$pollPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    responses<T extends pollOption$responsesArgs<ExtArgs> = {}>(args?: Subset<T, pollOption$responsesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7021,6 +7149,30 @@ export namespace Prisma {
   }
 
   /**
+   * pollOption.responses
+   */
+  export type pollOption$responsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    where?: pollResponsesWhereInput
+    orderBy?: pollResponsesOrderByWithRelationInput | pollResponsesOrderByWithRelationInput[]
+    cursor?: pollResponsesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PollResponsesScalarFieldEnum | PollResponsesScalarFieldEnum[]
+  }
+
+  /**
    * pollOption without action
    */
   export type pollOptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7036,6 +7188,1121 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: pollOptionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model pollResponses
+   */
+
+  export type AggregatePollResponses = {
+    _count: PollResponsesCountAggregateOutputType | null
+    _avg: PollResponsesAvgAggregateOutputType | null
+    _sum: PollResponsesSumAggregateOutputType | null
+    _min: PollResponsesMinAggregateOutputType | null
+    _max: PollResponsesMaxAggregateOutputType | null
+  }
+
+  export type PollResponsesAvgAggregateOutputType = {
+    id: number | null
+    pollOptionId: number | null
+  }
+
+  export type PollResponsesSumAggregateOutputType = {
+    id: number | null
+    pollOptionId: number | null
+  }
+
+  export type PollResponsesMinAggregateOutputType = {
+    id: number | null
+    submittedAt: string | null
+    submittedBy: string | null
+    selectedOption: string | null
+    pollOptionId: number | null
+  }
+
+  export type PollResponsesMaxAggregateOutputType = {
+    id: number | null
+    submittedAt: string | null
+    submittedBy: string | null
+    selectedOption: string | null
+    pollOptionId: number | null
+  }
+
+  export type PollResponsesCountAggregateOutputType = {
+    id: number
+    submittedAt: number
+    submittedBy: number
+    selectedOption: number
+    pollOptionId: number
+    _all: number
+  }
+
+
+  export type PollResponsesAvgAggregateInputType = {
+    id?: true
+    pollOptionId?: true
+  }
+
+  export type PollResponsesSumAggregateInputType = {
+    id?: true
+    pollOptionId?: true
+  }
+
+  export type PollResponsesMinAggregateInputType = {
+    id?: true
+    submittedAt?: true
+    submittedBy?: true
+    selectedOption?: true
+    pollOptionId?: true
+  }
+
+  export type PollResponsesMaxAggregateInputType = {
+    id?: true
+    submittedAt?: true
+    submittedBy?: true
+    selectedOption?: true
+    pollOptionId?: true
+  }
+
+  export type PollResponsesCountAggregateInputType = {
+    id?: true
+    submittedAt?: true
+    submittedBy?: true
+    selectedOption?: true
+    pollOptionId?: true
+    _all?: true
+  }
+
+  export type PollResponsesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which pollResponses to aggregate.
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pollResponses to fetch.
+     */
+    orderBy?: pollResponsesOrderByWithRelationInput | pollResponsesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: pollResponsesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pollResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pollResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned pollResponses
+    **/
+    _count?: true | PollResponsesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PollResponsesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PollResponsesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PollResponsesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PollResponsesMaxAggregateInputType
+  }
+
+  export type GetPollResponsesAggregateType<T extends PollResponsesAggregateArgs> = {
+        [P in keyof T & keyof AggregatePollResponses]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePollResponses[P]>
+      : GetScalarType<T[P], AggregatePollResponses[P]>
+  }
+
+
+
+
+  export type pollResponsesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pollResponsesWhereInput
+    orderBy?: pollResponsesOrderByWithAggregationInput | pollResponsesOrderByWithAggregationInput[]
+    by: PollResponsesScalarFieldEnum[] | PollResponsesScalarFieldEnum
+    having?: pollResponsesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PollResponsesCountAggregateInputType | true
+    _avg?: PollResponsesAvgAggregateInputType
+    _sum?: PollResponsesSumAggregateInputType
+    _min?: PollResponsesMinAggregateInputType
+    _max?: PollResponsesMaxAggregateInputType
+  }
+
+  export type PollResponsesGroupByOutputType = {
+    id: number
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+    pollOptionId: number | null
+    _count: PollResponsesCountAggregateOutputType | null
+    _avg: PollResponsesAvgAggregateOutputType | null
+    _sum: PollResponsesSumAggregateOutputType | null
+    _min: PollResponsesMinAggregateOutputType | null
+    _max: PollResponsesMaxAggregateOutputType | null
+  }
+
+  type GetPollResponsesGroupByPayload<T extends pollResponsesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PollResponsesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PollResponsesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PollResponsesGroupByOutputType[P]>
+            : GetScalarType<T[P], PollResponsesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type pollResponsesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    submittedAt?: boolean
+    submittedBy?: boolean
+    selectedOption?: boolean
+    pollOptionId?: boolean
+    pollOption?: boolean | pollResponses$pollOptionArgs<ExtArgs>
+  }, ExtArgs["result"]["pollResponses"]>
+
+  export type pollResponsesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    submittedAt?: boolean
+    submittedBy?: boolean
+    selectedOption?: boolean
+    pollOptionId?: boolean
+    pollOption?: boolean | pollResponses$pollOptionArgs<ExtArgs>
+  }, ExtArgs["result"]["pollResponses"]>
+
+  export type pollResponsesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    submittedAt?: boolean
+    submittedBy?: boolean
+    selectedOption?: boolean
+    pollOptionId?: boolean
+    pollOption?: boolean | pollResponses$pollOptionArgs<ExtArgs>
+  }, ExtArgs["result"]["pollResponses"]>
+
+  export type pollResponsesSelectScalar = {
+    id?: boolean
+    submittedAt?: boolean
+    submittedBy?: boolean
+    selectedOption?: boolean
+    pollOptionId?: boolean
+  }
+
+  export type pollResponsesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "submittedAt" | "submittedBy" | "selectedOption" | "pollOptionId", ExtArgs["result"]["pollResponses"]>
+  export type pollResponsesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pollOption?: boolean | pollResponses$pollOptionArgs<ExtArgs>
+  }
+  export type pollResponsesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pollOption?: boolean | pollResponses$pollOptionArgs<ExtArgs>
+  }
+  export type pollResponsesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pollOption?: boolean | pollResponses$pollOptionArgs<ExtArgs>
+  }
+
+  export type $pollResponsesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "pollResponses"
+    objects: {
+      pollOption: Prisma.$pollOptionPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      submittedAt: string
+      submittedBy: string
+      selectedOption: string
+      pollOptionId: number | null
+    }, ExtArgs["result"]["pollResponses"]>
+    composites: {}
+  }
+
+  type pollResponsesGetPayload<S extends boolean | null | undefined | pollResponsesDefaultArgs> = $Result.GetResult<Prisma.$pollResponsesPayload, S>
+
+  type pollResponsesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<pollResponsesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PollResponsesCountAggregateInputType | true
+    }
+
+  export interface pollResponsesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pollResponses'], meta: { name: 'pollResponses' } }
+    /**
+     * Find zero or one PollResponses that matches the filter.
+     * @param {pollResponsesFindUniqueArgs} args - Arguments to find a PollResponses
+     * @example
+     * // Get one PollResponses
+     * const pollResponses = await prisma.pollResponses.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends pollResponsesFindUniqueArgs>(args: SelectSubset<T, pollResponsesFindUniqueArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PollResponses that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {pollResponsesFindUniqueOrThrowArgs} args - Arguments to find a PollResponses
+     * @example
+     * // Get one PollResponses
+     * const pollResponses = await prisma.pollResponses.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends pollResponsesFindUniqueOrThrowArgs>(args: SelectSubset<T, pollResponsesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PollResponses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pollResponsesFindFirstArgs} args - Arguments to find a PollResponses
+     * @example
+     * // Get one PollResponses
+     * const pollResponses = await prisma.pollResponses.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends pollResponsesFindFirstArgs>(args?: SelectSubset<T, pollResponsesFindFirstArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PollResponses that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pollResponsesFindFirstOrThrowArgs} args - Arguments to find a PollResponses
+     * @example
+     * // Get one PollResponses
+     * const pollResponses = await prisma.pollResponses.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends pollResponsesFindFirstOrThrowArgs>(args?: SelectSubset<T, pollResponsesFindFirstOrThrowArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PollResponses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pollResponsesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PollResponses
+     * const pollResponses = await prisma.pollResponses.findMany()
+     * 
+     * // Get first 10 PollResponses
+     * const pollResponses = await prisma.pollResponses.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pollResponsesWithIdOnly = await prisma.pollResponses.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends pollResponsesFindManyArgs>(args?: SelectSubset<T, pollResponsesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PollResponses.
+     * @param {pollResponsesCreateArgs} args - Arguments to create a PollResponses.
+     * @example
+     * // Create one PollResponses
+     * const PollResponses = await prisma.pollResponses.create({
+     *   data: {
+     *     // ... data to create a PollResponses
+     *   }
+     * })
+     * 
+     */
+    create<T extends pollResponsesCreateArgs>(args: SelectSubset<T, pollResponsesCreateArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PollResponses.
+     * @param {pollResponsesCreateManyArgs} args - Arguments to create many PollResponses.
+     * @example
+     * // Create many PollResponses
+     * const pollResponses = await prisma.pollResponses.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends pollResponsesCreateManyArgs>(args?: SelectSubset<T, pollResponsesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PollResponses and returns the data saved in the database.
+     * @param {pollResponsesCreateManyAndReturnArgs} args - Arguments to create many PollResponses.
+     * @example
+     * // Create many PollResponses
+     * const pollResponses = await prisma.pollResponses.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PollResponses and only return the `id`
+     * const pollResponsesWithIdOnly = await prisma.pollResponses.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends pollResponsesCreateManyAndReturnArgs>(args?: SelectSubset<T, pollResponsesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PollResponses.
+     * @param {pollResponsesDeleteArgs} args - Arguments to delete one PollResponses.
+     * @example
+     * // Delete one PollResponses
+     * const PollResponses = await prisma.pollResponses.delete({
+     *   where: {
+     *     // ... filter to delete one PollResponses
+     *   }
+     * })
+     * 
+     */
+    delete<T extends pollResponsesDeleteArgs>(args: SelectSubset<T, pollResponsesDeleteArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PollResponses.
+     * @param {pollResponsesUpdateArgs} args - Arguments to update one PollResponses.
+     * @example
+     * // Update one PollResponses
+     * const pollResponses = await prisma.pollResponses.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends pollResponsesUpdateArgs>(args: SelectSubset<T, pollResponsesUpdateArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PollResponses.
+     * @param {pollResponsesDeleteManyArgs} args - Arguments to filter PollResponses to delete.
+     * @example
+     * // Delete a few PollResponses
+     * const { count } = await prisma.pollResponses.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends pollResponsesDeleteManyArgs>(args?: SelectSubset<T, pollResponsesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PollResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pollResponsesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PollResponses
+     * const pollResponses = await prisma.pollResponses.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends pollResponsesUpdateManyArgs>(args: SelectSubset<T, pollResponsesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PollResponses and returns the data updated in the database.
+     * @param {pollResponsesUpdateManyAndReturnArgs} args - Arguments to update many PollResponses.
+     * @example
+     * // Update many PollResponses
+     * const pollResponses = await prisma.pollResponses.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PollResponses and only return the `id`
+     * const pollResponsesWithIdOnly = await prisma.pollResponses.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends pollResponsesUpdateManyAndReturnArgs>(args: SelectSubset<T, pollResponsesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PollResponses.
+     * @param {pollResponsesUpsertArgs} args - Arguments to update or create a PollResponses.
+     * @example
+     * // Update or create a PollResponses
+     * const pollResponses = await prisma.pollResponses.upsert({
+     *   create: {
+     *     // ... data to create a PollResponses
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PollResponses we want to update
+     *   }
+     * })
+     */
+    upsert<T extends pollResponsesUpsertArgs>(args: SelectSubset<T, pollResponsesUpsertArgs<ExtArgs>>): Prisma__pollResponsesClient<$Result.GetResult<Prisma.$pollResponsesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PollResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pollResponsesCountArgs} args - Arguments to filter PollResponses to count.
+     * @example
+     * // Count the number of PollResponses
+     * const count = await prisma.pollResponses.count({
+     *   where: {
+     *     // ... the filter for the PollResponses we want to count
+     *   }
+     * })
+    **/
+    count<T extends pollResponsesCountArgs>(
+      args?: Subset<T, pollResponsesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PollResponsesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PollResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PollResponsesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PollResponsesAggregateArgs>(args: Subset<T, PollResponsesAggregateArgs>): Prisma.PrismaPromise<GetPollResponsesAggregateType<T>>
+
+    /**
+     * Group by PollResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pollResponsesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends pollResponsesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: pollResponsesGroupByArgs['orderBy'] }
+        : { orderBy?: pollResponsesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, pollResponsesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPollResponsesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the pollResponses model
+   */
+  readonly fields: pollResponsesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for pollResponses.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__pollResponsesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    pollOption<T extends pollResponses$pollOptionArgs<ExtArgs> = {}>(args?: Subset<T, pollResponses$pollOptionArgs<ExtArgs>>): Prisma__pollOptionClient<$Result.GetResult<Prisma.$pollOptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the pollResponses model
+   */
+  interface pollResponsesFieldRefs {
+    readonly id: FieldRef<"pollResponses", 'Int'>
+    readonly submittedAt: FieldRef<"pollResponses", 'String'>
+    readonly submittedBy: FieldRef<"pollResponses", 'String'>
+    readonly selectedOption: FieldRef<"pollResponses", 'String'>
+    readonly pollOptionId: FieldRef<"pollResponses", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * pollResponses findUnique
+   */
+  export type pollResponsesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * Filter, which pollResponses to fetch.
+     */
+    where: pollResponsesWhereUniqueInput
+  }
+
+  /**
+   * pollResponses findUniqueOrThrow
+   */
+  export type pollResponsesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * Filter, which pollResponses to fetch.
+     */
+    where: pollResponsesWhereUniqueInput
+  }
+
+  /**
+   * pollResponses findFirst
+   */
+  export type pollResponsesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * Filter, which pollResponses to fetch.
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pollResponses to fetch.
+     */
+    orderBy?: pollResponsesOrderByWithRelationInput | pollResponsesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for pollResponses.
+     */
+    cursor?: pollResponsesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pollResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pollResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of pollResponses.
+     */
+    distinct?: PollResponsesScalarFieldEnum | PollResponsesScalarFieldEnum[]
+  }
+
+  /**
+   * pollResponses findFirstOrThrow
+   */
+  export type pollResponsesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * Filter, which pollResponses to fetch.
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pollResponses to fetch.
+     */
+    orderBy?: pollResponsesOrderByWithRelationInput | pollResponsesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for pollResponses.
+     */
+    cursor?: pollResponsesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pollResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pollResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of pollResponses.
+     */
+    distinct?: PollResponsesScalarFieldEnum | PollResponsesScalarFieldEnum[]
+  }
+
+  /**
+   * pollResponses findMany
+   */
+  export type pollResponsesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * Filter, which pollResponses to fetch.
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pollResponses to fetch.
+     */
+    orderBy?: pollResponsesOrderByWithRelationInput | pollResponsesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing pollResponses.
+     */
+    cursor?: pollResponsesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pollResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pollResponses.
+     */
+    skip?: number
+    distinct?: PollResponsesScalarFieldEnum | PollResponsesScalarFieldEnum[]
+  }
+
+  /**
+   * pollResponses create
+   */
+  export type pollResponsesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a pollResponses.
+     */
+    data: XOR<pollResponsesCreateInput, pollResponsesUncheckedCreateInput>
+  }
+
+  /**
+   * pollResponses createMany
+   */
+  export type pollResponsesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many pollResponses.
+     */
+    data: pollResponsesCreateManyInput | pollResponsesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * pollResponses createManyAndReturn
+   */
+  export type pollResponsesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * The data used to create many pollResponses.
+     */
+    data: pollResponsesCreateManyInput | pollResponsesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * pollResponses update
+   */
+  export type pollResponsesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a pollResponses.
+     */
+    data: XOR<pollResponsesUpdateInput, pollResponsesUncheckedUpdateInput>
+    /**
+     * Choose, which pollResponses to update.
+     */
+    where: pollResponsesWhereUniqueInput
+  }
+
+  /**
+   * pollResponses updateMany
+   */
+  export type pollResponsesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update pollResponses.
+     */
+    data: XOR<pollResponsesUpdateManyMutationInput, pollResponsesUncheckedUpdateManyInput>
+    /**
+     * Filter which pollResponses to update
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * Limit how many pollResponses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * pollResponses updateManyAndReturn
+   */
+  export type pollResponsesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * The data used to update pollResponses.
+     */
+    data: XOR<pollResponsesUpdateManyMutationInput, pollResponsesUncheckedUpdateManyInput>
+    /**
+     * Filter which pollResponses to update
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * Limit how many pollResponses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * pollResponses upsert
+   */
+  export type pollResponsesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the pollResponses to update in case it exists.
+     */
+    where: pollResponsesWhereUniqueInput
+    /**
+     * In case the pollResponses found by the `where` argument doesn't exist, create a new pollResponses with this data.
+     */
+    create: XOR<pollResponsesCreateInput, pollResponsesUncheckedCreateInput>
+    /**
+     * In case the pollResponses was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<pollResponsesUpdateInput, pollResponsesUncheckedUpdateInput>
+  }
+
+  /**
+   * pollResponses delete
+   */
+  export type pollResponsesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
+    /**
+     * Filter which pollResponses to delete.
+     */
+    where: pollResponsesWhereUniqueInput
+  }
+
+  /**
+   * pollResponses deleteMany
+   */
+  export type pollResponsesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which pollResponses to delete
+     */
+    where?: pollResponsesWhereInput
+    /**
+     * Limit how many pollResponses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * pollResponses.pollOption
+   */
+  export type pollResponses$pollOptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollOption
+     */
+    select?: pollOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollOption
+     */
+    omit?: pollOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollOptionInclude<ExtArgs> | null
+    where?: pollOptionWhereInput
+  }
+
+  /**
+   * pollResponses without action
+   */
+  export type pollResponsesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pollResponses
+     */
+    select?: pollResponsesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pollResponses
+     */
+    omit?: pollResponsesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pollResponsesInclude<ExtArgs> | null
   }
 
 
@@ -7110,6 +8377,17 @@ export namespace Prisma {
   };
 
   export type PollOptionScalarFieldEnum = (typeof PollOptionScalarFieldEnum)[keyof typeof PollOptionScalarFieldEnum]
+
+
+  export const PollResponsesScalarFieldEnum: {
+    id: 'id',
+    submittedAt: 'submittedAt',
+    submittedBy: 'submittedBy',
+    selectedOption: 'selectedOption',
+    pollOptionId: 'pollOptionId'
+  };
+
+  export type PollResponsesScalarFieldEnum = (typeof PollResponsesScalarFieldEnum)[keyof typeof PollResponsesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7471,6 +8749,7 @@ export namespace Prisma {
     options?: StringFilter<"pollOption"> | string
     pollId?: IntFilter<"pollOption"> | number
     poll?: XOR<PollNullableScalarRelationFilter, pollWhereInput> | null
+    responses?: PollResponsesListRelationFilter
   }
 
   export type pollOptionOrderByWithRelationInput = {
@@ -7479,6 +8758,7 @@ export namespace Prisma {
     options?: SortOrder
     pollId?: SortOrder
     poll?: pollOrderByWithRelationInput
+    responses?: pollResponsesOrderByRelationAggregateInput
   }
 
   export type pollOptionWhereUniqueInput = Prisma.AtLeast<{
@@ -7490,6 +8770,7 @@ export namespace Prisma {
     options?: StringFilter<"pollOption"> | string
     pollId?: IntFilter<"pollOption"> | number
     poll?: XOR<PollNullableScalarRelationFilter, pollWhereInput> | null
+    responses?: PollResponsesListRelationFilter
   }, "id">
 
   export type pollOptionOrderByWithAggregationInput = {
@@ -7512,6 +8793,63 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"pollOption"> | Date | string
     options?: StringWithAggregatesFilter<"pollOption"> | string
     pollId?: IntWithAggregatesFilter<"pollOption"> | number
+  }
+
+  export type pollResponsesWhereInput = {
+    AND?: pollResponsesWhereInput | pollResponsesWhereInput[]
+    OR?: pollResponsesWhereInput[]
+    NOT?: pollResponsesWhereInput | pollResponsesWhereInput[]
+    id?: IntFilter<"pollResponses"> | number
+    submittedAt?: StringFilter<"pollResponses"> | string
+    submittedBy?: StringFilter<"pollResponses"> | string
+    selectedOption?: StringFilter<"pollResponses"> | string
+    pollOptionId?: IntNullableFilter<"pollResponses"> | number | null
+    pollOption?: XOR<PollOptionNullableScalarRelationFilter, pollOptionWhereInput> | null
+  }
+
+  export type pollResponsesOrderByWithRelationInput = {
+    id?: SortOrder
+    submittedAt?: SortOrder
+    submittedBy?: SortOrder
+    selectedOption?: SortOrder
+    pollOptionId?: SortOrderInput | SortOrder
+    pollOption?: pollOptionOrderByWithRelationInput
+  }
+
+  export type pollResponsesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: pollResponsesWhereInput | pollResponsesWhereInput[]
+    OR?: pollResponsesWhereInput[]
+    NOT?: pollResponsesWhereInput | pollResponsesWhereInput[]
+    submittedAt?: StringFilter<"pollResponses"> | string
+    submittedBy?: StringFilter<"pollResponses"> | string
+    selectedOption?: StringFilter<"pollResponses"> | string
+    pollOptionId?: IntNullableFilter<"pollResponses"> | number | null
+    pollOption?: XOR<PollOptionNullableScalarRelationFilter, pollOptionWhereInput> | null
+  }, "id">
+
+  export type pollResponsesOrderByWithAggregationInput = {
+    id?: SortOrder
+    submittedAt?: SortOrder
+    submittedBy?: SortOrder
+    selectedOption?: SortOrder
+    pollOptionId?: SortOrderInput | SortOrder
+    _count?: pollResponsesCountOrderByAggregateInput
+    _avg?: pollResponsesAvgOrderByAggregateInput
+    _max?: pollResponsesMaxOrderByAggregateInput
+    _min?: pollResponsesMinOrderByAggregateInput
+    _sum?: pollResponsesSumOrderByAggregateInput
+  }
+
+  export type pollResponsesScalarWhereWithAggregatesInput = {
+    AND?: pollResponsesScalarWhereWithAggregatesInput | pollResponsesScalarWhereWithAggregatesInput[]
+    OR?: pollResponsesScalarWhereWithAggregatesInput[]
+    NOT?: pollResponsesScalarWhereWithAggregatesInput | pollResponsesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"pollResponses"> | number
+    submittedAt?: StringWithAggregatesFilter<"pollResponses"> | string
+    submittedBy?: StringWithAggregatesFilter<"pollResponses"> | string
+    selectedOption?: StringWithAggregatesFilter<"pollResponses"> | string
+    pollOptionId?: IntNullableWithAggregatesFilter<"pollResponses"> | number | null
   }
 
   export type categoriesCreateInput = {
@@ -7778,6 +9116,7 @@ export namespace Prisma {
     createdAt?: Date | string
     options: string
     poll?: pollCreateNestedOneWithoutOptionsInput
+    responses?: pollResponsesCreateNestedManyWithoutPollOptionInput
   }
 
   export type pollOptionUncheckedCreateInput = {
@@ -7785,12 +9124,14 @@ export namespace Prisma {
     createdAt?: Date | string
     options: string
     pollId: number
+    responses?: pollResponsesUncheckedCreateNestedManyWithoutPollOptionInput
   }
 
   export type pollOptionUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: StringFieldUpdateOperationsInput | string
     poll?: pollUpdateOneWithoutOptionsNestedInput
+    responses?: pollResponsesUpdateManyWithoutPollOptionNestedInput
   }
 
   export type pollOptionUncheckedUpdateInput = {
@@ -7798,6 +9139,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: StringFieldUpdateOperationsInput | string
     pollId?: IntFieldUpdateOperationsInput | number
+    responses?: pollResponsesUncheckedUpdateManyWithoutPollOptionNestedInput
   }
 
   export type pollOptionCreateManyInput = {
@@ -7817,6 +9159,58 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: StringFieldUpdateOperationsInput | string
     pollId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type pollResponsesCreateInput = {
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+    pollOption?: pollOptionCreateNestedOneWithoutResponsesInput
+  }
+
+  export type pollResponsesUncheckedCreateInput = {
+    id?: number
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+    pollOptionId?: number | null
+  }
+
+  export type pollResponsesUpdateInput = {
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
+    pollOption?: pollOptionUpdateOneWithoutResponsesNestedInput
+  }
+
+  export type pollResponsesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
+    pollOptionId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type pollResponsesCreateManyInput = {
+    id?: number
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+    pollOptionId?: number | null
+  }
+
+  export type pollResponsesUpdateManyMutationInput = {
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type pollResponsesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
+    pollOptionId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -8140,6 +9534,16 @@ export namespace Prisma {
     isNot?: pollWhereInput | null
   }
 
+  export type PollResponsesListRelationFilter = {
+    every?: pollResponsesWhereInput
+    some?: pollResponsesWhereInput
+    none?: pollResponsesWhereInput
+  }
+
+  export type pollResponsesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type pollOptionCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
@@ -8169,6 +9573,72 @@ export namespace Prisma {
   export type pollOptionSumOrderByAggregateInput = {
     id?: SortOrder
     pollId?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type PollOptionNullableScalarRelationFilter = {
+    is?: pollOptionWhereInput | null
+    isNot?: pollOptionWhereInput | null
+  }
+
+  export type pollResponsesCountOrderByAggregateInput = {
+    id?: SortOrder
+    submittedAt?: SortOrder
+    submittedBy?: SortOrder
+    selectedOption?: SortOrder
+    pollOptionId?: SortOrder
+  }
+
+  export type pollResponsesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    pollOptionId?: SortOrder
+  }
+
+  export type pollResponsesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    submittedAt?: SortOrder
+    submittedBy?: SortOrder
+    selectedOption?: SortOrder
+    pollOptionId?: SortOrder
+  }
+
+  export type pollResponsesMinOrderByAggregateInput = {
+    id?: SortOrder
+    submittedAt?: SortOrder
+    submittedBy?: SortOrder
+    selectedOption?: SortOrder
+    pollOptionId?: SortOrder
+  }
+
+  export type pollResponsesSumOrderByAggregateInput = {
+    id?: SortOrder
+    pollOptionId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type videosCreateNestedManyWithoutCategoryInput = {
@@ -8413,6 +9883,20 @@ export namespace Prisma {
     connect?: pollWhereUniqueInput
   }
 
+  export type pollResponsesCreateNestedManyWithoutPollOptionInput = {
+    create?: XOR<pollResponsesCreateWithoutPollOptionInput, pollResponsesUncheckedCreateWithoutPollOptionInput> | pollResponsesCreateWithoutPollOptionInput[] | pollResponsesUncheckedCreateWithoutPollOptionInput[]
+    connectOrCreate?: pollResponsesCreateOrConnectWithoutPollOptionInput | pollResponsesCreateOrConnectWithoutPollOptionInput[]
+    createMany?: pollResponsesCreateManyPollOptionInputEnvelope
+    connect?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+  }
+
+  export type pollResponsesUncheckedCreateNestedManyWithoutPollOptionInput = {
+    create?: XOR<pollResponsesCreateWithoutPollOptionInput, pollResponsesUncheckedCreateWithoutPollOptionInput> | pollResponsesCreateWithoutPollOptionInput[] | pollResponsesUncheckedCreateWithoutPollOptionInput[]
+    connectOrCreate?: pollResponsesCreateOrConnectWithoutPollOptionInput | pollResponsesCreateOrConnectWithoutPollOptionInput[]
+    createMany?: pollResponsesCreateManyPollOptionInputEnvelope
+    connect?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+  }
+
   export type pollUpdateOneWithoutOptionsNestedInput = {
     create?: XOR<pollCreateWithoutOptionsInput, pollUncheckedCreateWithoutOptionsInput>
     connectOrCreate?: pollCreateOrConnectWithoutOptionsInput
@@ -8421,6 +9905,58 @@ export namespace Prisma {
     delete?: pollWhereInput | boolean
     connect?: pollWhereUniqueInput
     update?: XOR<XOR<pollUpdateToOneWithWhereWithoutOptionsInput, pollUpdateWithoutOptionsInput>, pollUncheckedUpdateWithoutOptionsInput>
+  }
+
+  export type pollResponsesUpdateManyWithoutPollOptionNestedInput = {
+    create?: XOR<pollResponsesCreateWithoutPollOptionInput, pollResponsesUncheckedCreateWithoutPollOptionInput> | pollResponsesCreateWithoutPollOptionInput[] | pollResponsesUncheckedCreateWithoutPollOptionInput[]
+    connectOrCreate?: pollResponsesCreateOrConnectWithoutPollOptionInput | pollResponsesCreateOrConnectWithoutPollOptionInput[]
+    upsert?: pollResponsesUpsertWithWhereUniqueWithoutPollOptionInput | pollResponsesUpsertWithWhereUniqueWithoutPollOptionInput[]
+    createMany?: pollResponsesCreateManyPollOptionInputEnvelope
+    set?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    disconnect?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    delete?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    connect?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    update?: pollResponsesUpdateWithWhereUniqueWithoutPollOptionInput | pollResponsesUpdateWithWhereUniqueWithoutPollOptionInput[]
+    updateMany?: pollResponsesUpdateManyWithWhereWithoutPollOptionInput | pollResponsesUpdateManyWithWhereWithoutPollOptionInput[]
+    deleteMany?: pollResponsesScalarWhereInput | pollResponsesScalarWhereInput[]
+  }
+
+  export type pollResponsesUncheckedUpdateManyWithoutPollOptionNestedInput = {
+    create?: XOR<pollResponsesCreateWithoutPollOptionInput, pollResponsesUncheckedCreateWithoutPollOptionInput> | pollResponsesCreateWithoutPollOptionInput[] | pollResponsesUncheckedCreateWithoutPollOptionInput[]
+    connectOrCreate?: pollResponsesCreateOrConnectWithoutPollOptionInput | pollResponsesCreateOrConnectWithoutPollOptionInput[]
+    upsert?: pollResponsesUpsertWithWhereUniqueWithoutPollOptionInput | pollResponsesUpsertWithWhereUniqueWithoutPollOptionInput[]
+    createMany?: pollResponsesCreateManyPollOptionInputEnvelope
+    set?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    disconnect?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    delete?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    connect?: pollResponsesWhereUniqueInput | pollResponsesWhereUniqueInput[]
+    update?: pollResponsesUpdateWithWhereUniqueWithoutPollOptionInput | pollResponsesUpdateWithWhereUniqueWithoutPollOptionInput[]
+    updateMany?: pollResponsesUpdateManyWithWhereWithoutPollOptionInput | pollResponsesUpdateManyWithWhereWithoutPollOptionInput[]
+    deleteMany?: pollResponsesScalarWhereInput | pollResponsesScalarWhereInput[]
+  }
+
+  export type pollOptionCreateNestedOneWithoutResponsesInput = {
+    create?: XOR<pollOptionCreateWithoutResponsesInput, pollOptionUncheckedCreateWithoutResponsesInput>
+    connectOrCreate?: pollOptionCreateOrConnectWithoutResponsesInput
+    connect?: pollOptionWhereUniqueInput
+  }
+
+  export type pollOptionUpdateOneWithoutResponsesNestedInput = {
+    create?: XOR<pollOptionCreateWithoutResponsesInput, pollOptionUncheckedCreateWithoutResponsesInput>
+    connectOrCreate?: pollOptionCreateOrConnectWithoutResponsesInput
+    upsert?: pollOptionUpsertWithoutResponsesInput
+    disconnect?: pollOptionWhereInput | boolean
+    delete?: pollOptionWhereInput | boolean
+    connect?: pollOptionWhereUniqueInput
+    update?: XOR<XOR<pollOptionUpdateToOneWithWhereWithoutResponsesInput, pollOptionUpdateWithoutResponsesInput>, pollOptionUncheckedUpdateWithoutResponsesInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8557,6 +10093,33 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type videosCreateWithoutCategoryInput = {
@@ -8777,12 +10340,14 @@ export namespace Prisma {
   export type pollOptionCreateWithoutPollInput = {
     createdAt?: Date | string
     options: string
+    responses?: pollResponsesCreateNestedManyWithoutPollOptionInput
   }
 
   export type pollOptionUncheckedCreateWithoutPollInput = {
     id?: number
     createdAt?: Date | string
     options: string
+    responses?: pollResponsesUncheckedCreateNestedManyWithoutPollOptionInput
   }
 
   export type pollOptionCreateOrConnectWithoutPollInput = {
@@ -8955,6 +10520,29 @@ export namespace Prisma {
     create: XOR<pollCreateWithoutOptionsInput, pollUncheckedCreateWithoutOptionsInput>
   }
 
+  export type pollResponsesCreateWithoutPollOptionInput = {
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+  }
+
+  export type pollResponsesUncheckedCreateWithoutPollOptionInput = {
+    id?: number
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+  }
+
+  export type pollResponsesCreateOrConnectWithoutPollOptionInput = {
+    where: pollResponsesWhereUniqueInput
+    create: XOR<pollResponsesCreateWithoutPollOptionInput, pollResponsesUncheckedCreateWithoutPollOptionInput>
+  }
+
+  export type pollResponsesCreateManyPollOptionInputEnvelope = {
+    data: pollResponsesCreateManyPollOptionInput | pollResponsesCreateManyPollOptionInput[]
+    skipDuplicates?: boolean
+  }
+
   export type pollUpsertWithoutOptionsInput = {
     update: XOR<pollUpdateWithoutOptionsInput, pollUncheckedUpdateWithoutOptionsInput>
     create: XOR<pollCreateWithoutOptionsInput, pollUncheckedCreateWithoutOptionsInput>
@@ -8985,6 +10573,75 @@ export namespace Prisma {
     duration?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     videoId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type pollResponsesUpsertWithWhereUniqueWithoutPollOptionInput = {
+    where: pollResponsesWhereUniqueInput
+    update: XOR<pollResponsesUpdateWithoutPollOptionInput, pollResponsesUncheckedUpdateWithoutPollOptionInput>
+    create: XOR<pollResponsesCreateWithoutPollOptionInput, pollResponsesUncheckedCreateWithoutPollOptionInput>
+  }
+
+  export type pollResponsesUpdateWithWhereUniqueWithoutPollOptionInput = {
+    where: pollResponsesWhereUniqueInput
+    data: XOR<pollResponsesUpdateWithoutPollOptionInput, pollResponsesUncheckedUpdateWithoutPollOptionInput>
+  }
+
+  export type pollResponsesUpdateManyWithWhereWithoutPollOptionInput = {
+    where: pollResponsesScalarWhereInput
+    data: XOR<pollResponsesUpdateManyMutationInput, pollResponsesUncheckedUpdateManyWithoutPollOptionInput>
+  }
+
+  export type pollResponsesScalarWhereInput = {
+    AND?: pollResponsesScalarWhereInput | pollResponsesScalarWhereInput[]
+    OR?: pollResponsesScalarWhereInput[]
+    NOT?: pollResponsesScalarWhereInput | pollResponsesScalarWhereInput[]
+    id?: IntFilter<"pollResponses"> | number
+    submittedAt?: StringFilter<"pollResponses"> | string
+    submittedBy?: StringFilter<"pollResponses"> | string
+    selectedOption?: StringFilter<"pollResponses"> | string
+    pollOptionId?: IntNullableFilter<"pollResponses"> | number | null
+  }
+
+  export type pollOptionCreateWithoutResponsesInput = {
+    createdAt?: Date | string
+    options: string
+    poll?: pollCreateNestedOneWithoutOptionsInput
+  }
+
+  export type pollOptionUncheckedCreateWithoutResponsesInput = {
+    id?: number
+    createdAt?: Date | string
+    options: string
+    pollId: number
+  }
+
+  export type pollOptionCreateOrConnectWithoutResponsesInput = {
+    where: pollOptionWhereUniqueInput
+    create: XOR<pollOptionCreateWithoutResponsesInput, pollOptionUncheckedCreateWithoutResponsesInput>
+  }
+
+  export type pollOptionUpsertWithoutResponsesInput = {
+    update: XOR<pollOptionUpdateWithoutResponsesInput, pollOptionUncheckedUpdateWithoutResponsesInput>
+    create: XOR<pollOptionCreateWithoutResponsesInput, pollOptionUncheckedCreateWithoutResponsesInput>
+    where?: pollOptionWhereInput
+  }
+
+  export type pollOptionUpdateToOneWithWhereWithoutResponsesInput = {
+    where?: pollOptionWhereInput
+    data: XOR<pollOptionUpdateWithoutResponsesInput, pollOptionUncheckedUpdateWithoutResponsesInput>
+  }
+
+  export type pollOptionUpdateWithoutResponsesInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    options?: StringFieldUpdateOperationsInput | string
+    poll?: pollUpdateOneWithoutOptionsNestedInput
+  }
+
+  export type pollOptionUncheckedUpdateWithoutResponsesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    options?: StringFieldUpdateOperationsInput | string
+    pollId?: IntFieldUpdateOperationsInput | number
   }
 
   export type videosCreateManyCategoryInput = {
@@ -9111,18 +10768,47 @@ export namespace Prisma {
   export type pollOptionUpdateWithoutPollInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: StringFieldUpdateOperationsInput | string
+    responses?: pollResponsesUpdateManyWithoutPollOptionNestedInput
   }
 
   export type pollOptionUncheckedUpdateWithoutPollInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: StringFieldUpdateOperationsInput | string
+    responses?: pollResponsesUncheckedUpdateManyWithoutPollOptionNestedInput
   }
 
   export type pollOptionUncheckedUpdateManyWithoutPollInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     options?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type pollResponsesCreateManyPollOptionInput = {
+    id?: number
+    submittedAt: string
+    submittedBy: string
+    selectedOption: string
+  }
+
+  export type pollResponsesUpdateWithoutPollOptionInput = {
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type pollResponsesUncheckedUpdateWithoutPollOptionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type pollResponsesUncheckedUpdateManyWithoutPollOptionInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    submittedAt?: StringFieldUpdateOperationsInput | string
+    submittedBy?: StringFieldUpdateOperationsInput | string
+    selectedOption?: StringFieldUpdateOperationsInput | string
   }
 
 
